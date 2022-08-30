@@ -10,7 +10,7 @@ namespace AutoTrainerDB.Models
     {
 
         public Routine Routine { get; set; }
-        public int RiutineID { get; set; }
+        public int RoutineID { get; set; }
         public Exercise Exercise { get; set; }
         public int MyProperty { get; set; }
         public string Sex { get; set; }
