@@ -22,8 +22,7 @@ namespace AutoTrainerServices.Services.Servises
             context.Exercises.Add(new Exercise
             {
                 Name = newExerciseCreateDTO.Name,
-                Description = newExerciseCreateDTO.Description,
-                Muscle = context.Muscles.FirstOrDefault(_ => _.ID == newExerciseCreateDTO.MuscleID)
+                Description = newExerciseCreateDTO.Description                
             });
             context.SaveChanges();
         }
@@ -38,8 +37,7 @@ namespace AutoTrainerServices.Services.Servises
             }
 
             OldExercise.Name = newExerciseUpdateDTO.Name;
-            OldExercise.Description = newExerciseUpdateDTO.Description;
-            OldExercise.Muscle = context.Muscles.FirstOrDefault(_ => _.ID == newExerciseUpdateDTO.MuscleID);
+            OldExercise.Description = newExerciseUpdateDTO.Description;            
 
             context.SaveChanges();
         }
@@ -69,7 +67,6 @@ namespace AutoTrainerServices.Services.Servises
             {
                 Name = _.Name,
                 Description = _.Description,
-                Muscle = _.Muscle.Name,
                 ID = _.ID
             }).ToList();
 
@@ -88,7 +85,6 @@ namespace AutoTrainerServices.Services.Servises
             {
                 Name = exercise.Name,
                 Description = exercise.Description,
-                Muscle = exercise.Muscle.Name,
                 ID = exercise.ID
             };
         }
@@ -101,7 +97,6 @@ namespace AutoTrainerServices.Services.Servises
             {
                 Name = _.Name,
                 Description = _.Description,
-                Muscle = _.Muscle.Name,
                 ID = _.ID
             }).ToList();
 

@@ -12,8 +12,6 @@ namespace AutoTrainerServices.DTO.Exercise
 
         public string Description { get; set; }
 
-        public string Muscle { get; set; }
-
         public int ID { get; set; }
     }
 }

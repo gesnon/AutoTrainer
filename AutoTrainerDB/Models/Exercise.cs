@@ -14,6 +14,8 @@ namespace AutoTrainerDB.Models
 
         public string Description { get; set; }
 
-        public Muscle Muscle { get; set; }
+        
+
+
     }
 }

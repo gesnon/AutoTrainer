@@ -21,6 +21,15 @@ namespace AutoTrainerDB
         {
             Database.EnsureCreated();                      // если базы нет, то она создастся
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<Routine>()
+                .HasMany(e => e.RoutineExercises)
+                .WithOne(e => e.Routine)
+                .HasForeignKey(у => у.RoutineID)
+                .OnDelete(DeleteBehavior.ClientCascade);
+        }
     }
 }
 

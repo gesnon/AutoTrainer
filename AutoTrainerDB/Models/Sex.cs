@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AutoTrainerDB.Models
 {
-    public class PersonCharacteristic
+    public enum Sex
     {
-        public int ClientID { get; set; }
-        public int CharacteristicID { get; set; }
-        public int ID { get; set; }
+        Unisex,
+        Male,
+        Female
     }
 }

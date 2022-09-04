@@ -11,7 +11,7 @@ namespace AutoTrainerDB.Models
         public Level Level { get; set; }       
         public List<PersonCharacteristic> PersonCharacteristics { get; set; }
         public Purpose Purpose { get; set; }
-        public List<RoutineExercise> RoutineExercises { get; set; }
-        public int ID { get; set; }
+        public Routine TrainingPlan { get; set; }
+        
     }
 }

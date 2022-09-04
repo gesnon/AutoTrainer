@@ -10,8 +10,10 @@ namespace AutoTrainerDB.Models
     {
         public string Name { get; set; }
 
-        public string Sex { get; set; }
+        public Sex Sex { get; set; }
 
         public string Role { get; set; }
+
+        public int ID { get; set; }
     }
 }
