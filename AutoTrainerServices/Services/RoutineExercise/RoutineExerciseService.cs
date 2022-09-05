@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoTrainerServices.Services.Services
 {
-    public class RoutineExerciseService: IRoutineExerciseService
+    public class RoutineExerciseService : IRoutineExerciseService
     {
         private readonly ContextDB context;
         public RoutineExerciseService(ContextDB context)
@@ -23,26 +23,24 @@ namespace AutoTrainerServices.Services.Services
             {
                 ExerciseID = newRoutineExercise.ExerciseID,
                 Exercise = context.Exercises.FirstOrDefault(_ => _.ID == newRoutineExercise.ExerciseID),
-                RoutineID = newRoutineExercise.RoutineID,
-                Routine = context.Routines.FirstOrDefault(_ => _.ID == newRoutineExercise.RoutineID),
                 Level = context.Levels.FirstOrDefault(_ => _.ID == newRoutineExercise.LevelID),
                 Muscle = context.Muscles.FirstOrDefault(_ => _.ID == newRoutineExercise.MuscleID),
                 Sex = (Sex)newRoutineExercise.Sex,
-                Purpose = context.Purposes.FirstOrDefault(_ => _.ID == newRoutineExercise.PurposeID),                
+                Purpose = context.Purposes.FirstOrDefault(_ => _.ID == newRoutineExercise.PurposeID),
                 Exeptions = newRoutineExercise.ExeptionsID
                 .Select(_ => context.Characteristics
-                .FirstOrDefault(c=>c.ID==_)).ToList(),                
+                .FirstOrDefault(c => c.ID == _)).ToList(),
 
             });
 
             context.SaveChanges();
-            
+
         }
 
         public void UpdateRoutineExercise(UpdateRoutineExerciseDTO newRoutineExercise)
         {
             RoutineExercise OldRoutineExercise = context.RoutineExercises.FirstOrDefault(_ => _.ID == newRoutineExercise.RoutineExerciseID);
-        
+
             if (OldRoutineExercise == null)
             {
                 throw new Exception("Объект не найден");
@@ -50,7 +48,7 @@ namespace AutoTrainerServices.Services.Services
 
             OldRoutineExercise.RoutineID = newRoutineExercise.RoutineID;
             OldRoutineExercise.Routine = context.Routines.FirstOrDefault(_ => _.ID == newRoutineExercise.RoutineID);
-            OldRoutineExercise.ExerciseID= newRoutineExercise.ExerciseID;
+            OldRoutineExercise.ExerciseID = newRoutineExercise.ExerciseID;
             OldRoutineExercise.Exercise = context.Exercises.FirstOrDefault(_ => _.ID == newRoutineExercise.ExerciseID);
             OldRoutineExercise.Muscle = context.Muscles.FirstOrDefault(_ => _.ID == newRoutineExercise.MuscleID);
             OldRoutineExercise.Level = context.Levels.FirstOrDefault(_ => _.ID == newRoutineExercise.LevelID);
