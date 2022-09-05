@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace AutoTrainerDB.Models
 {
-    public class PersonCharacteristic
+    public class ExerciseCharacteristic
     {
-        public int ClientID { get; set; }
         public Characteristic Characteristic { get; set; }
-        public int CharacteristicID { get; set; }
-        public int ID { get; set; }
+        public int ExerciseCharacteristicID { get; set; }
+        public RoutineExercise RoutineExercise { get; set; }
     }
 }

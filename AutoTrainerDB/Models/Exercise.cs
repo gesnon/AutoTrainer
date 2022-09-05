@@ -9,13 +9,8 @@ namespace AutoTrainerDB.Models
     public class Exercise
     {
         public string Name { get; set; }
-
         public int ID { get; set; }
-
-        public string Description { get; set; }
-
-        
-
+        public string Description { get; set; }      
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using AutoTrainerServices.DTO.RoutineExercise;
+﻿using AutoTrainerDB.Models;
+using AutoTrainerServices.DTO.RoutineExercise;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,8 @@ namespace AutoTrainerServices.Services.Services
     public interface IRoutineExerciseService
     {
         public void CreateRoutineExercise(CreateRoutineExerciseDTO newRoutineExercise);
+        public void UpdateRoutineExercise(UpdateRoutineExerciseDTO newRoutineExercise);
+        public void DeleteRoutineExercise(int RoutineExerciseID);
+        public List<RoutineExercise> GetTrainingProgram(Client Client, Muscle Muscle);
     }
 }

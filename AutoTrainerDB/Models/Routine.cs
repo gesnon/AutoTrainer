@@ -11,7 +11,7 @@ namespace AutoTrainerDB.Models
         public Client Client { get; set; }
         public int ClientID { get; set; }
         public int ID { get; set; }
-        public List<RoutineExercise> RoutineExercises { get; set; }
+        public List<ClientExercise> ClientExercises { get; set; }
 
     }
 }
