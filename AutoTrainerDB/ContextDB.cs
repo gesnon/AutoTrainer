@@ -17,19 +17,21 @@ namespace AutoTrainerDB
         public DbSet<Purpose> Purposes { get; set; }
         public DbSet<Level> Levels { get; set; }
         public DbSet<Muscle> Muscles { get; set; }
+        public DbSet<ExerciseCharacteristic> ExerciseCharacteristics { get; set; }
+        
         public ContextDB(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();                      // если базы нет, то она создастся
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder
-                .Entity<Routine>()
-                .HasMany(e => e.RoutineExercises)
-                .WithOne(e => e.Routine)
-                .HasForeignKey(у => у.RoutineID)
-                .OnDelete(DeleteBehavior.ClientCascade);
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder
+        //        .Entity<Routine>()
+        //        .HasMany(e => e.RoutineExercises)
+        //        .WithOne(e => e.Routine)
+        //        .HasForeignKey(у => у.RoutineID)
+        //        .OnDelete(DeleteBehavior.ClientCascade);
+        //}
     }
 }
 

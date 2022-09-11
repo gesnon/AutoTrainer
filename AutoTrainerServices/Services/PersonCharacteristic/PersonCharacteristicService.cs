@@ -15,14 +15,6 @@ namespace AutoTrainerServices.Services.Services
         {
             this.context = context;
         }
-        public List<PersonCharacteristic> CreatePersonCharacteristics(List<int> characteristics)
-        {
-            List<PersonCharacteristic> personCharacteristics = new List<PersonCharacteristic>();
-            foreach (int c in characteristics)
-            {
-                personCharacteristics.Add(new PersonCharacteristic { CharacteristicID = c });
-            }
-            return personCharacteristics;
-        }
+
     }
 }

@@ -15,5 +15,7 @@ namespace AutoTrainerServices.Services.Services
         public List<GetExerciseDTO> GetExercisesByName(string Name);
         public GetExerciseDTO GetExercise(int ExerciseID);
         public List<GetExerciseDTO> GetAllExercise();
+
+        public void AddData();
     }
 }

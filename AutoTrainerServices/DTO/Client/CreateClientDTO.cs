@@ -13,9 +13,10 @@ namespace AutoTrainerServices.DTO.Client
         public string Name { get; set; }
         public Sex Sex { get; set; }
         public string Role { get; set; }
-        public List<int> PersonCharacteristics { get; set; }
+        public List<int> PersonCharacteristics { get; set; } = new List<int>();
         public int PurposeID { get; set; }
         public int LevelID { get; set; }
+
 
     }
 }

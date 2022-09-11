@@ -9,6 +9,6 @@ namespace AutoTrainerServices.Services.Services
 {
     public interface IPersonCharacteristicService
     {
-        public List<PersonCharacteristic> CreatePersonCharacteristics(List<int> characteristics);
+        
     }
 }

@@ -23,18 +23,15 @@ namespace AutoTrainerServices.Services.Services
 
         public void CreateClient(CreateClientDTO newClientDTO)    
         {
-            List<PersonCharacteristic> personCharacteristic = personCharacteristicService
-                .CreatePersonCharacteristics(newClientDTO.PersonCharacteristics).ToList();
-
             context.Clients.Add(new Client
             {
                 Name = newClientDTO.Name,
                 Sex = newClientDTO.Sex,
                 Role = newClientDTO.Role,
-                Purpose = context.Purposes.FirstOrDefault(_ => _.ID == newClientDTO.PurposeID),
-                Level = context.Levels.FirstOrDefault(_ => _.ID == newClientDTO.LevelID),
-                PersonCharacteristics = personCharacteristic
-
+                PurposeID = newClientDTO.PurposeID,
+                LevelID = newClientDTO.LevelID,
+                PersonCharacteristics = newClientDTO.PersonCharacteristics
+                .Select(_ => new PersonCharacteristic { CharacteristicID = _ }).ToList()
             }) ;
 
             context.SaveChanges();

@@ -42,14 +42,15 @@ namespace AutoTrainerServices.Services.Servises
             context.SaveChanges();
         }
 
-        public void DeleteExercise(int ExerciseID)
+        public void DeleteExercise(int ExerciseID)            
         {
-            if (context.Exercises.FirstOrDefault(_ => _.ID == ExerciseID) == null)
+            Exercise exercise = context.Exercises.FirstOrDefault(_ => _.ID == ExerciseID);
+            if (exercise == null)
             {
                 throw new Exception("Упражнение не найдёно");
             }
 
-            context.Exercises.Remove(context.Exercises.FirstOrDefault(_ => _.ID == ExerciseID));
+            context.Exercises.Remove(exercise);
 
             context.SaveChanges();
         }
@@ -101,6 +102,11 @@ namespace AutoTrainerServices.Services.Servises
             }).ToList();
 
             return list;
+        }
+
+        public void AddData()
+        {
+            
         }
     }
 }

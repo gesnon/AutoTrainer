@@ -14,7 +14,7 @@ namespace AutoTrainerServices.DTO.RoutineExercise
         public int ExerciseID { get; set; }
         public int Sex { get; set; }
         public int PurposeID { get; set; }
-        public List<int> ExeptionsID { get; set; }
+        public List<int> ExerciseCharacteristicID { get; set; }
         public int MuscleID { get; set; }
         public int LevelID { get; set; }
     }

@@ -22,14 +22,13 @@ namespace AutoTrainerServices.Services.Services
             context.RoutineExercises.Add(new RoutineExercise
             {
                 ExerciseID = newRoutineExercise.ExerciseID,
-                Exercise = context.Exercises.FirstOrDefault(_ => _.ID == newRoutineExercise.ExerciseID),
-                Level = context.Levels.FirstOrDefault(_ => _.ID == newRoutineExercise.LevelID),
-                Muscle = context.Muscles.FirstOrDefault(_ => _.ID == newRoutineExercise.MuscleID),
+                LevelID = newRoutineExercise.LevelID,
+                MuscleID = newRoutineExercise.MuscleID,                
                 Sex = (Sex)newRoutineExercise.Sex,
-                Purpose = context.Purposes.FirstOrDefault(_ => _.ID == newRoutineExercise.PurposeID),
-                Exeptions = newRoutineExercise.ExeptionsID
-                .Select(_ => context.Characteristics
-                .FirstOrDefault(c => c.ID == _)).ToList(),
+                PurposeID = newRoutineExercise.PurposeID,
+                ExerciseCharacteristics = newRoutineExercise.ExerciseCharacteristicID
+                .Select(_ => context.ExerciseCharacteristics
+                .FirstOrDefault(c => c.ExerciseCharacteristicID == _)).ToList(),
 
             });
 
@@ -45,36 +44,35 @@ namespace AutoTrainerServices.Services.Services
             {
                 throw new Exception("Объект не найден");
             }
-
-            OldRoutineExercise.RoutineID = newRoutineExercise.RoutineID;
-            OldRoutineExercise.Routine = context.Routines.FirstOrDefault(_ => _.ID == newRoutineExercise.RoutineID);
             OldRoutineExercise.ExerciseID = newRoutineExercise.ExerciseID;
-            OldRoutineExercise.Exercise = context.Exercises.FirstOrDefault(_ => _.ID == newRoutineExercise.ExerciseID);
-            OldRoutineExercise.Muscle = context.Muscles.FirstOrDefault(_ => _.ID == newRoutineExercise.MuscleID);
-            OldRoutineExercise.Level = context.Levels.FirstOrDefault(_ => _.ID == newRoutineExercise.LevelID);
-            OldRoutineExercise.Purpose = context.Purposes.FirstOrDefault(_ => _.ID == newRoutineExercise.PurposeID);
-            OldRoutineExercise.Exeptions = newRoutineExercise.ExeptionsID
-                .Select(_ => context.Characteristics
-                .FirstOrDefault(c => c.ID == _)).ToList();
+            OldRoutineExercise.LevelID = newRoutineExercise.LevelID;
+            OldRoutineExercise.MuscleID = newRoutineExercise.MuscleID;
+            OldRoutineExercise.Sex = (Sex)newRoutineExercise.Sex;
+            OldRoutineExercise.PurposeID = newRoutineExercise.PurposeID;
+            
+            OldRoutineExercise.ExerciseCharacteristics = newRoutineExercise.ExerciseCharacteristicID
+                .Select(_ => context.ExerciseCharacteristics
+                .FirstOrDefault(c => c.ExerciseCharacteristicID == _)).ToList();
 
             context.SaveChanges();
         }
 
         public void DeleteRoutineExercise(int RoutineExerciseID)
         {
-            if (context.RoutineExercises.FirstOrDefault(_ => _.ID == RoutineExerciseID) == null)
+            RoutineExercise routineExercise = context.RoutineExercises.FirstOrDefault(_ => _.ID == RoutineExerciseID);
+            if (routineExercise == null)
             {
                 throw new Exception("Объект не найден");
             }
 
-            context.RoutineExercises.Remove(context.RoutineExercises.FirstOrDefault(_ => _.ID == RoutineExerciseID));
+            context.RoutineExercises.Remove(routineExercise);
 
             context.SaveChanges();
         }
 
         public List<RoutineExercise> GetTrainingProgram(Client Client, Muscle Muscle)
         {
-
+            return null;
         }
     }
 }
