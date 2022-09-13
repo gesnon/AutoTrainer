@@ -44,5 +44,11 @@ namespace AutoTrainer.Controllers
         {
             return exerciseService.GetAllExercise();
         }
+
+        [HttpPost("{AddData}")]
+        public void AddData()
+        {
+            exerciseService.AddData();
+        }
     }
 }

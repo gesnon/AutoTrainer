@@ -8,9 +8,10 @@ namespace AutoTrainerDB.Models
 {
     public class PersonCharacteristic
     {
-        public int ClientID { get; set; }
         public Characteristic Characteristic { get; set; }
         public int CharacteristicID { get; set; }
-        public int ID { get; set; }
+        public Client Client { get; set; }
+        public int ClientID { get; set; }
+        public int PersonCharacteristicID { get; set; }
     }
 }
