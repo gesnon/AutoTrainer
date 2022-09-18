@@ -17,7 +17,7 @@ namespace AutoTrainerDB.Models
 
         [ForeignKey("RoutineID")]
         public Routine Routine { get; set; }
-        public int RoutineID { get; set; }
+        public int? RoutineID { get; set; }
 
     }
 }

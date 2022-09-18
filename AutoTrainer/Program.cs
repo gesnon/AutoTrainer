@@ -20,6 +20,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDbContext<ContextDB>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=AutoTrainerDB;Trusted_Connection=true"));
 
 builder.Services.AddTransient<IExerciseService, ExerciseService>();
+builder.Services.AddTransient<IClientExerciseService, ClientExerciseService>();
 
 var app = builder.Build();
 

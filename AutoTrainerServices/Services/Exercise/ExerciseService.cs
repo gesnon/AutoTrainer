@@ -176,7 +176,6 @@ namespace AutoTrainerServices.Services.Servises
                     new Muscle { Name = "Мышцы спины" },
                     new Muscle { Name = "Мышцы пресса" }
                 };
-
                 List<Level> levels = new List<Level>
                 {
                 new Level { Name ="Начинающий"},
@@ -194,33 +193,269 @@ namespace AutoTrainerServices.Services.Servises
                 new Characteristic{Name="Грыжа"},
                 new Characteristic{Name="Артрит"}
                 };
-
                 List<RoutineExercise> routineExercises = new List<RoutineExercise>
                 {
+                // создание RoutineExercise для мужчины начального уровня подготовки с целью набрать массу
                 new RoutineExercise {ExerciseID=1,MuscleID=1, LevelID=1, Sex=Sex.Male, PurposeID=2},
                 new RoutineExercise {ExerciseID=2,MuscleID=1, LevelID=1, Sex=Sex.Male, PurposeID=2},
-                new RoutineExercise {ExerciseID=3,MuscleID=1, LevelID=1, Sex=Sex.Male, PurposeID=2},                
-
+                new RoutineExercise {ExerciseID=3,MuscleID=1, LevelID=1, Sex=Sex.Male, PurposeID=2},
                 new RoutineExercise {ExerciseID=4,MuscleID=1, LevelID=1,
                 Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
-
                 new RoutineExercise {ExerciseID=5,MuscleID=1, LevelID=1,
                 Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
-
                 new RoutineExercise {ExerciseID=6,MuscleID=1, LevelID=1,
                 Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
-                    
+
+                new RoutineExercise {ExerciseID=7,MuscleID=2, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=8,MuscleID=2, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=9,MuscleID=2, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=10,MuscleID=2, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=11,MuscleID=2, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=12,MuscleID=2, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=13,MuscleID=3, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=14,MuscleID=3, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=15,MuscleID=3, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=16,MuscleID=3, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=17,MuscleID=3, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=18,MuscleID=3, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=19,MuscleID=4, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=20,MuscleID=4, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=21,MuscleID=4, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=22,MuscleID=4, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=23,MuscleID=4, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=24,MuscleID=4, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=25,MuscleID=5, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=26,MuscleID=5, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=27,MuscleID=5, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=28,MuscleID=5, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=29,MuscleID=5, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=30,MuscleID=5, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=31,MuscleID=6, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=32,MuscleID=6, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=33,MuscleID=6, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=34,MuscleID=6, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=35,MuscleID=6, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=36,MuscleID=6, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=37,MuscleID=7, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=38,MuscleID=7, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=39,MuscleID=7, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=40,MuscleID=7, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=41,MuscleID=7, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=42,MuscleID=7, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=43,MuscleID=8, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=44,MuscleID=8, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=45,MuscleID=8, LevelID=1, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=46,MuscleID=8, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=47,MuscleID=8, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=48,MuscleID=8, LevelID=1,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},                
+               
+                // создание RoutineExercise для мужчины среднего уровня подготовки с целью набрать массу
+                new RoutineExercise {ExerciseID=1,MuscleID=1, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=2,MuscleID=1, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=3,MuscleID=1, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=4,MuscleID=1, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=5,MuscleID=1, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=6,MuscleID=1, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=7,MuscleID=2, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=8,MuscleID=2, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=9,MuscleID=2, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=10,MuscleID=2, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=11,MuscleID=2, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=12,MuscleID=2, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=13,MuscleID=3, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=14,MuscleID=3, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=15,MuscleID=3, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=16,MuscleID=3, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=17,MuscleID=3, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=18,MuscleID=3, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=19,MuscleID=4, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=20,MuscleID=4, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=21,MuscleID=4, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=22,MuscleID=4, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=23,MuscleID=4, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=24,MuscleID=4, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=25,MuscleID=5, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=26,MuscleID=5, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=27,MuscleID=5, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=28,MuscleID=5, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=29,MuscleID=5, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=30,MuscleID=5, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=31,MuscleID=6, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=32,MuscleID=6, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=33,MuscleID=6, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=34,MuscleID=6, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=35,MuscleID=6, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=36,MuscleID=6, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=37,MuscleID=7, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=38,MuscleID=7, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=39,MuscleID=7, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=40,MuscleID=7, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=41,MuscleID=7, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=42,MuscleID=7, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=43,MuscleID=8, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=44,MuscleID=8, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=45,MuscleID=8, LevelID=2, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=46,MuscleID=8, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=47,MuscleID=8, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=48,MuscleID=8, LevelID=2,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+                
+                // создание RoutineExercise для мужчины продвинутого уровня подготовки с целью набрать массу
+                new RoutineExercise {ExerciseID=1,MuscleID=1, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=2,MuscleID=1, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=3,MuscleID=1, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=4,MuscleID=1, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=5,MuscleID=1, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=6,MuscleID=1, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=7,MuscleID=2, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=8,MuscleID=2, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=9,MuscleID=2, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=10,MuscleID=2, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=11,MuscleID=2, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=12,MuscleID=2, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=13,MuscleID=3, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=14,MuscleID=3, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=15,MuscleID=3, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=16,MuscleID=3, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=17,MuscleID=3, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=18,MuscleID=3, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=19,MuscleID=4, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=20,MuscleID=4, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=21,MuscleID=4, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=22,MuscleID=4, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=23,MuscleID=4, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=24,MuscleID=4, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=25,MuscleID=5, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=26,MuscleID=5, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=27,MuscleID=5, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=28,MuscleID=5, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=29,MuscleID=5, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=30,MuscleID=5, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=31,MuscleID=6, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=32,MuscleID=6, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=33,MuscleID=6, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=34,MuscleID=6, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=35,MuscleID=6, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=36,MuscleID=6, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=37,MuscleID=7, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=38,MuscleID=7, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=39,MuscleID=7, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=40,MuscleID=7, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=41,MuscleID=7, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=42,MuscleID=7, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
+
+                new RoutineExercise {ExerciseID=43,MuscleID=8, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=44,MuscleID=8, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=45,MuscleID=8, LevelID=3, Sex=Sex.Male, PurposeID=2},
+                new RoutineExercise {ExerciseID=46,MuscleID=8, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=1 }}},
+                new RoutineExercise {ExerciseID=47,MuscleID=8, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=2 }}},
+                new RoutineExercise {ExerciseID=48,MuscleID=8, LevelID=3,
+                Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
                 };
 
-
+                List<Client> clients = new List<Client>
+                {
+                    new Client{Name="Сергей",Role="Клиент", LevelID=1, PurposeID=2, Sex=Sex.Male },
+                    new Client{Name="Иван",Role="Клиент", LevelID=2, PurposeID=2, Sex=Sex.Male }
+                };
+                List<PersonCharacteristic> personCharacteristics = new List<PersonCharacteristic>
+                {
+                    new PersonCharacteristic{CharacteristicID=1, ClientID=2}
+                };
                 //context.Muscles.AddRange(muscles);
                 //context.Exercises.AddRange(exercises);
                 //context.Levels.AddRange(levels);
                 //context.Purposes.AddRange(purposes);
                 //context.Characteristics.AddRange(characteristics);
                 //context.RoutineExercises.AddRange(routineExercises);
-                 
-
+                //context.Clients.AddRange(clients);
+                context.PersonCharacteristics.AddRange(personCharacteristics);
                 context.SaveChanges();
             }
         }
