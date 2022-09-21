@@ -8,8 +8,8 @@ namespace AutoTrainerDB.Models
 {
     public class ClientExercise
     {
-        public int RoutineID { get; set; }
-        public Routine Routine { get; set; }
+        public int TrainingDayID { get; set; }
+        public TrainingDay TrainingDay { get; set; }
         public int RoutineExerciseID { get; set; }
         public  RoutineExercise RoutineExercise { get; set; }
         public int ClientExerciseID { get; set; }

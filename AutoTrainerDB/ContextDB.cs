@@ -18,11 +18,14 @@ namespace AutoTrainerDB
         public DbSet<Level> Levels { get; set; }
         public DbSet<Muscle> Muscles { get; set; }
         public DbSet<ExerciseCharacteristic> ExerciseCharacteristics { get; set; }
-        
+        public DbSet<TrainingWeek> TrainingWeeks { get; set; }
+        public DbSet<TrainingDay> TrainingDays { get; set; }
+
         public ContextDB(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();                      // если базы нет, то она создастся
         }
+
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    modelBuilder

@@ -165,7 +165,6 @@ namespace AutoTrainerServices.Services.Servises
                     new Exercise { Name = "Упражнение на мышцы пресса 5", Description = "Описание" },
                     new Exercise { Name = "Упражнение на мышцы пресса 6", Description = "Описание" },
                     };
-
                 List<Muscle> muscles = new List<Muscle> {
                     new Muscle { Name = "Грудные" },
                     new Muscle { Name = "Бицепс" },
@@ -438,7 +437,6 @@ namespace AutoTrainerServices.Services.Servises
                 new RoutineExercise {ExerciseID=48,MuscleID=8, LevelID=3,
                 Sex=Sex.Male, PurposeID=2,ExerciseCharacteristics=new List<ExerciseCharacteristic>{new ExerciseCharacteristic{CharacteristicID=3 }}},
                 };
-
                 List<Client> clients = new List<Client>
                 {
                     new Client{Name="Сергей",Role="Клиент", LevelID=1, PurposeID=2, Sex=Sex.Male },
@@ -448,14 +446,16 @@ namespace AutoTrainerServices.Services.Servises
                 {
                     new PersonCharacteristic{CharacteristicID=1, ClientID=2}
                 };
-                //context.Muscles.AddRange(muscles);
+
                 //context.Exercises.AddRange(exercises);
+                //context.Muscles.AddRange(muscles);
                 //context.Levels.AddRange(levels);
                 //context.Purposes.AddRange(purposes);
                 //context.Characteristics.AddRange(characteristics);
                 //context.RoutineExercises.AddRange(routineExercises);
                 //context.Clients.AddRange(clients);
-                context.PersonCharacteristics.AddRange(personCharacteristics);
+                //context.PersonCharacteristics.AddRange(personCharacteristics);
+                
                 context.SaveChanges();
             }
         }
