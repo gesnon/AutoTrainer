@@ -18,6 +18,7 @@ namespace AutoTrainerDB
         public DbSet<Level> Levels { get; set; }
         public DbSet<Muscle> Muscles { get; set; }
         public DbSet<ExerciseCharacteristic> ExerciseCharacteristics { get; set; }
+        public DbSet<ClientExercise> ClientExercises { get; set; }
         public DbSet<TrainingWeek> TrainingWeeks { get; set; }
         public DbSet<TrainingDay> TrainingDays { get; set; }
 

@@ -1,5 +1,8 @@
 ﻿using AutoTrainerDB;
 using AutoTrainerDB.Models;
+using AutoTrainerServices.DTO.ClientExercise;
+using AutoTrainerServices.DTO.Exercise;
+using AutoTrainerServices.DTO.RoutineExercise;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,10 +15,10 @@ namespace AutoTrainerServices.Services.Services
     public class ClientExerciseService : IClientExerciseService
     {
         private readonly ContextDB context;
-        
+
         public ClientExerciseService(ContextDB context)
         {
-            this.context = context;            
+            this.context = context;
         }
 
         public List<ClientExercise> GetTrainingProgram(int ClientID, int MuscleID)
@@ -29,10 +32,10 @@ namespace AutoTrainerServices.Services.Services
             List<ClientExercise> trainingProgram = new List<ClientExercise>();
             List<int> clientCharacteristics = client.PersonCharacteristics.Select(_ => _.CharacteristicID).ToList();
             List<RoutineExercise> routineExercises = context.RoutineExercises.Include(_ => _.ExerciseCharacteristics)
-                .Where(_ => _.LevelID == client.LevelID && _.MuscleID == MuscleID && _.PurposeID == client.PurposeID 
-                && _.Sex == client.Sex|| _.Sex == Sex.Unisex).ToList();
-            
-            
+                .Where(_ => _.LevelID == client.LevelID && _.MuscleID == MuscleID && _.PurposeID == client.PurposeID
+                && _.Sex == client.Sex || _.Sex == Sex.Unisex).ToList();
+
+
 
             foreach (RoutineExercise r in routineExercises)
             {
@@ -41,12 +44,63 @@ namespace AutoTrainerServices.Services.Services
                 List<int> check = clientCharacteristics.Intersect(exerciseCharacteristics).ToList();
                 if (check.Count != 0)
                 {
-                    routineExercises.Remove(context.RoutineExercises.FirstOrDefault(_=>_.ExerciseID==r.ExerciseID));
+                    routineExercises.Remove(context.RoutineExercises.FirstOrDefault(_ => _.ExerciseID == r.ExerciseID));
                     continue;
                 }
-                trainingProgram.Add(new ClientExercise { ClientExerciseID = client.ID, RoutineExerciseID = r.ID });
+
             }
             return trainingProgram;
+        }
+
+        public GetClientExerciseDTO GetClientExerciseDTO(int ID)
+        {
+            ClientExercise OldClientExercise = context.ClientExercises.FirstOrDefault(_ => _.ClientExerciseID == ID);
+
+            if (OldClientExercise == null)
+            {
+                throw new Exception("Упражнение не найдено");
+            }
+            return new GetClientExerciseDTO
+            {
+                ClientExerciseID = ID,
+                TrainingDayID = OldClientExercise.TrainingDayID,
+                RoutineExerciseDTO = new GetRoutineExerciseDTO
+                {
+                   ExerciseDTO= new GetExerciseDTO { Description= OldClientExercise.RoutineExercise.Description, Name=OldClientExercise.RoutineExercise.Name, ID=OldClientExercise.RoutineExerciseID},
+                   
+                    
+                }
+            };
+        }
+        public void CreateClientExercise(CreateClientExerciseDTO DTO)
+        {
+            context.ClientExercises.Add(new ClientExercise { RoutineExerciseID=DTO.RoutineExerciseID, TrainingDayID=DTO.TrainingDayID});
+            context.SaveChanges();
+        }
+        public void UpdateClientExercise(UpdateClientExerciseDTO DTO)
+        {
+            ClientExercise OldClientExercise = context.ClientExercises.FirstOrDefault(_ => _.ClientExerciseID == DTO.ClientExerciseID);
+
+            if (OldClientExercise == null)
+            {
+                throw new Exception("Упражнение не найдено");
+            }
+            OldClientExercise.RoutineExerciseID = DTO.RoutineExerciseID;
+            OldClientExercise.TrainingDayID = DTO.TrainingDayID;
+            context.SaveChanges();
+
+        }
+        public void DeleteClientExercise(int ClientExerciseID)
+        {
+            ClientExercise OldClientExercise = context.ClientExercises.FirstOrDefault(_ => _.ClientExerciseID == ClientExerciseID);
+
+            if (OldClientExercise == null)
+            {
+                throw new Exception("Упражнение не найдено");
+            }
+            context.ClientExercises.Remove(OldClientExercise);
+
+            context.SaveChanges();
         }
     }
 }
