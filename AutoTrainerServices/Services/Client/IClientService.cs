@@ -10,5 +10,8 @@ namespace AutoTrainerServices.Services.Services
     public interface IClientService
     {
         public void CreateClient(CreateClientDTO newClientDTO);
+
+        public void DeleteClient(int ID);
+        
     }
 }

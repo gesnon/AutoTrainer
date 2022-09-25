@@ -11,9 +11,7 @@ namespace AutoTrainerServices.DTO.PersonCharacteristic
 {
     public class CreatePersonCharacteristicDTO
     {
-        public GetCharacteristicDTO CharacteristicDTO { get; set; }
         public int CharacteristicID { get; set; }
-        public GetClientDTO ClientDTO { get; set; }
         public int ClientID { get; set; }        
     }
 }

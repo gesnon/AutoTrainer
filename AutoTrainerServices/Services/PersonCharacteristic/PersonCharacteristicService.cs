@@ -1,5 +1,6 @@
 ﻿using AutoTrainerDB;
 using AutoTrainerDB.Models;
+using AutoTrainerServices.DTO.Characteristic;
 using AutoTrainerServices.DTO.PersonCharacteristic;
 using System;
 using System.Collections.Generic;
@@ -26,26 +27,10 @@ namespace AutoTrainerServices.Services.Services
                 throw new Exception("Характеристика не найдена");
 
             }
-            return new GetPersonCharacteristicDTO { CharacteristicID = res.CharacteristicID, ClientID = res.ClientID, PersonCharacteristicID = res.PersonCharacteristicID };
+            return new GetPersonCharacteristicDTO { CharacteristicDTO=new GetCharacteristicDTO {Name=res.Characteristic.Name, CharacteristicID=res.Characteristic.ID }, PersonCharacteristicID=res.PersonCharacteristicID };
         }
 
-        public List<GetPersonCharacteristicDTO> GetPersonCharacteristicByName(string name)
-        {
-            var query = context.PersonCharacteristics.AsQueryable();
 
-            if (!string.IsNullOrEmpty(name))
-            {
-                query = query.Where(_ => _.Characteristic.Name.Contains(name));
-            }
-
-            List<GetPersonCharacteristicDTO> list = query.Select(_ => new GetPersonCharacteristicDTO
-            {
-                CharacteristicID=_.CharacteristicID,
-                ClientID=_.ClientID,
-            }).ToList();
-
-            return list;
-        }
         public void CreatePersonCharacteristic(CreatePersonCharacteristicDTO DTO)
         {
             context.PersonCharacteristics.Add(new PersonCharacteristic { CharacteristicID = DTO.CharacteristicID, ClientID = DTO.ClientID });
@@ -59,9 +44,8 @@ namespace AutoTrainerServices.Services.Services
             {
                 throw new Exception("Характеристика не найдена");
 
-            }
-            res.CharacteristicID = DTO.CharacteristicID;
-            res.ClientID = DTO.ClientID;
+            }            
+            res.CharacteristicID = res.Characteristic.ID;           
             context.SaveChanges();
         }
         public PersonCharacteristic GetPersonCharacteristicByID(int ID)
@@ -86,6 +70,24 @@ namespace AutoTrainerServices.Services.Services
             }
             context.PersonCharacteristics.Remove(res);
             context.SaveChanges();
+        }
+
+        public List<GetPersonCharacteristicDTO> GetPersonCharacteristicList(int ClientID)
+        {
+            Client client = context.Clients.FirstOrDefault(_ => _.ID == ClientID);
+            if(client == null)
+            {
+                throw new Exception("Клиент не найден");
+            }
+            List<GetPersonCharacteristicDTO> res = client.PersonCharacteristics.Select(_ =>
+            new GetPersonCharacteristicDTO
+            {
+                CharacteristicDTO = new GetCharacteristicDTO
+                { Name = _.Characteristic.Name, CharacteristicID = _.Characteristic.ID },
+                PersonCharacteristicID = _.PersonCharacteristicID
+            }).ToList();
+
+            return res;
         }
     }
 }

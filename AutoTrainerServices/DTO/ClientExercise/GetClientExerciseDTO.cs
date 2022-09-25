@@ -10,8 +10,7 @@ namespace AutoTrainerServices.DTO.ClientExercise
 {
     public class GetClientExerciseDTO
     {
-        public int TrainingDayID { get; set; }
-        public int RoutineExerciseID { get; set; }
+        public int TrainingDayID { get; set; }        
         public GetRoutineExerciseDTO RoutineExerciseDTO { get; set; }
         public int ClientExerciseID { get; set; }
     }

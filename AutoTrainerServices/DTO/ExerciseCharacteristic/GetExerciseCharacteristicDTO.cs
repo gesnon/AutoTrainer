@@ -1,4 +1,5 @@
-﻿using AutoTrainerServices.DTO.RoutineExercise;
+﻿using AutoTrainerServices.DTO.Characteristic;
+using AutoTrainerServices.DTO.RoutineExercise;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,8 @@ namespace AutoTrainerServices.DTO.ExerciseCharacteristic
 {
     public class GetExerciseCharacteristicDTO
     {
-        public GetExerciseCharacteristicDTO CharacteristicDTO { get; set; }
-        public int CharacteristicID { get; set; }  
-        public int RoutineExerciseID { get; set; }
+        public GetCharacteristicDTO CharacteristicDTO { get; set; }        
+        public string RoutineExerciseName { get; set; }
         public int ExerciseCharacteristicID { get; set; }
     }
 }

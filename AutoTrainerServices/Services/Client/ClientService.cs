@@ -36,5 +36,16 @@ namespace AutoTrainerServices.Services.Services
 
             context.SaveChanges();
         }
+
+        public void DeleteClient(int ID)
+        {
+            Client client = context.Clients.FirstOrDefault(_ => _.ID == ID);
+            if (client == null)
+            {
+                throw new Exception("Клиент не найден");
+            }
+            context.Clients.Remove(client);
+            context.SaveChanges();
+        }
     }
 }

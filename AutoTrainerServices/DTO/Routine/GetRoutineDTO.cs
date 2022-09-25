@@ -11,7 +11,6 @@ namespace AutoTrainerServices.DTO.Routine
     public class GetRoutineDTO
     {
         public GetClientDTO ClientDTO { get; set; }
-        public int ClientID { get; set; }
         public List<GetTrainingWeekDTO> TrainingWeeksDTO { get; set; }
         public int RoutineID { get; set; }
     }

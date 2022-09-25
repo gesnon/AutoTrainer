@@ -29,8 +29,8 @@ namespace AutoTrainerServices.Services.Services
             {
                 throw new Exception("характеристика не найдена");
             }
-            exerciseCharacteristic.CharacteristicID = DTO.CharacteristicID;
-            exerciseCharacteristic.RoutineExerciseID= DTO.RoutineExerciseID;
+            exerciseCharacteristic.CharacteristicID = DTO.CharacteristicDTO.CharacteristicID;
+            exerciseCharacteristic.RoutineExerciseID= DTO.RoutineExerciseDTO.ID;
             context.SaveChanges();
         }
         public void DeleteExerciseCharacteristic(int ID)

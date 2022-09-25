@@ -13,8 +13,8 @@ namespace AutoTrainerServices.Services.Services
         public GetPersonCharacteristicDTO GetPersonCharacteristicDTO(int ID);
         public void CreatePersonCharacteristic(CreatePersonCharacteristicDTO createPersonCharacteristicDTO);
         public void UpdatePersonCharacteristic(UpdatePersonCharacteristicDTO updatePersonCharacteristicDTO);
-        public List<GetPersonCharacteristicDTO> GetPersonCharacteristicByName(string Name);
         public PersonCharacteristic GetPersonCharacteristicByID(int ID);
+        public List<GetPersonCharacteristicDTO> GetPersonCharacteristicList(int ClientID);
         public void DeletePersonCharacteristic(int ID);
     }
 }
