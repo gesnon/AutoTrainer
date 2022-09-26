@@ -76,9 +76,9 @@ namespace AutoTrainerServices.Services.Services
             context.SaveChanges();
         }
 
-        public List<GetRoutineExerciseDTO> GetRoutineExercise(List<RoutineExercise> routineExercises)
+        public List<GetRoutineExerciseDTO> GetRoutineExercisesDTO(List<RoutineExercise> routineExercises)
         {
-            List<GetRoutineExerciseDTO> result = routineExercises.Select(_ => new GetRoutineExerciseDTO
+            List<GetRoutineExerciseDTO> result = (List<GetRoutineExerciseDTO>)routineExercises.Select(_ => new GetRoutineExerciseDTO
             {
                 ID = _.ID,
                 MuscleDTO = new GetMuscleDTO { ID = _.Muscle.ID, Name = _.Muscle.Name, SubName = _.Muscle.SubName },
@@ -86,13 +86,20 @@ namespace AutoTrainerServices.Services.Services
                 LevelDTO = new GetLevelDTO { ID = _.Level.ID, Name = _.Level.Name },
                 PurposeDTO = new GetPurposeDTO { ID = _.Purpose.ID, Name = _.Purpose.Name },
                 Sex = _.Sex,
-                ExerciseCharacteristicsDTO = _.ExerciseCharacteristics.Select(_ => new GetExerciseCharacteristicDTO
-                { ExerciseCharacteristicID = _.ExerciseCharacteristicID,
+                ExerciseCharacteristicsDTO = (List<GetExerciseCharacteristicDTO>)_.ExerciseCharacteristics.Select(_ => new GetExerciseCharacteristicDTO
+                {
+                    ExerciseCharacteristicID = _.ExerciseCharacteristicID,
                     CharacteristicDTO = new GetCharacteristicDTO { CharacteristicID = _.CharacteristicID, Name = _.Characteristic.Name },
                     RoutineExerciseName = _.RoutineExercise.Exercise.Name
-                    ).ToList(),
+                })                   
                 
-            }); ;
+            });
+            return result;
+        }
+        public List<RoutineExercise> ConvertFromClientExercises(List<ClientExercise> clientExercises)
+        {
+            List<RoutineExercise> result = clientExercises.Select(_ => new RoutineExercise { }).ToList();
+            return result;
         }
         public List<RoutineExercise> GetTrainingProgram(Client Client, Muscle Muscle)
         {

@@ -15,21 +15,36 @@ namespace AutoTrainerServices.Services.Services
     public class TrainingDayService : ITrainingDayService
     {
         private readonly ContextDB context;
-        public TrainingDayService(ContextDB context)
+
+        public IRoutineExerciseService routineExerciseService;
+        public TrainingDayService(ContextDB context, IRoutineExerciseService routineExerciseService)
         {
             this.context = context;
+            this.routineExerciseService = routineExerciseService;
         }
 
         public GetTrainingDayDTO getTrainingDayDTO(int ID)
         {
-            TrainingDay trainingDay= context.TrainingDays.FirstOrDefault(x => x.ID == ID);
+            
+            TrainingDay trainingDay= context.TrainingDays.FirstOrDefault(x => x.ID == ID);            
+            
             if (trainingDay == null)
             {
-                return new GetTrainingDayDTO { Day=trainingDay.Day, ID = ID, TrainingWeekID=trainingDay.TrainingWeekID, 
-                    ClientExercisesDTO=trainingDay.ClientExercises.Select(
-                        _=> new GetClientExerciseDTO { ClientExerciseID=_.ClientExerciseID, TrainingDayID=_.TrainingDayID, 
-                            RoutineExerciseDTO=new GetRoutineExerciseDTO{ExerciseDTO=new GetExerciseDTO{ }) };
+               
             }
+            List<GetRoutineExerciseDTO> list = routineExerciseService.GetRoutineExercisesDTO(trainingDay.ClientExercises);
+            return new GetTrainingDayDTO
+            {
+                Day = trainingDay.Day,
+                ID = ID,
+                TrainingWeekID = trainingDay.TrainingWeekID,
+                ClientExercisesDTO = trainingDay.ClientExercises.Select(
+                       _ => new GetClientExerciseDTO
+                       {
+                           ClientExerciseID = _.ClientExerciseID,
+                           TrainingDayID = _.TrainingDayID,
+                           RoutineExerciseDTO = new GetRoutineExerciseDTO { ExerciseDTO = new GetExerciseDTO { })
+            };
         }
 
         public void UpdateTrainingDayDTO();
