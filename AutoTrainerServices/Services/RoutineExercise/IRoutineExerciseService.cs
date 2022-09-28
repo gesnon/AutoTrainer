@@ -14,8 +14,6 @@ namespace AutoTrainerServices.Services.Services
         public void UpdateRoutineExercise(UpdateRoutineExerciseDTO newRoutineExercise);
         public void DeleteRoutineExercise(int RoutineExerciseID);
         public List<RoutineExercise> GetTrainingProgram(Client Client, Muscle Muscle);
-        public List<GetRoutineExerciseDTO> GetRoutineExercisesDTO(List<RoutineExercise> routineExercises);
-
         public List<RoutineExercise> ConvertFromClientExercises(List<ClientExercise> clientExercises);
     }
 }

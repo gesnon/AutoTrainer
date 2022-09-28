@@ -16,10 +16,6 @@ namespace AutoTrainerServices.DTO.RoutineExercise
     {   
         public GetExerciseDTO ExerciseDTO { get; set; }
         public GetMuscleDTO MuscleDTO { get; set; }
-        public GetLevelDTO LevelDTO { get; set; }
-        public Sex Sex { get; set; }
-        public List<GetExerciseCharacteristicDTO> ExerciseCharacteristicsDTO { get; set; }
-        public GetPurposeDTO PurposeDTO { get; set; }
         public int ID { get; set; }
     }
 }

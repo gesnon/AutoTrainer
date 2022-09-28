@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AutoTrainer.Controllers
 {
     [ApiController]
-    [Route("API/Characteristic")]
+    [Route("api/[controller]")]
     public class ExerciseCharacteristicController
     {
         private readonly IExerciseCharacteristicService exerciseCharacteristicService;
@@ -32,7 +32,7 @@ namespace AutoTrainer.Controllers
         {
             return exerciseCharacteristicService.GetExerciseCharacteristicByID(ID);
         }
-        [HttpGet("GetCharacteristicsByName/{Name?")]
+        [HttpGet("GetCharacteristicsByName/{Name}")]
         public List<GetCharacteristicDTO> GetCharacteristicsByName(string Name)
         {
             return GetCharacteristicsByName(Name);

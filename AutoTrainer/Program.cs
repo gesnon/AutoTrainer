@@ -22,6 +22,7 @@ builder.Services.AddDbContext<ContextDB>(options => options.UseSqlServer("Server
 builder.Services.AddTransient<IExerciseService, ExerciseService>();
 builder.Services.AddTransient<IClientExerciseService, ClientExerciseService>();
 
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

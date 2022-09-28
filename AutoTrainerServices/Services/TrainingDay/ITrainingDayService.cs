@@ -11,7 +11,7 @@ namespace AutoTrainerServices.Services.Services
     {
         public GetTrainingDayDTO getTrainingDayDTO(int TrainingDayID);
         
-        public void UpdateTrainingDayDTO(UpdateTrainingDayDTO DTO);
+       
 
 
     }

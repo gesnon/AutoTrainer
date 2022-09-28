@@ -6,7 +6,7 @@ namespace AutoTrainer.Controllers
 {
 
     [ApiController]
-    [Route("API/Client")]
+    [Route("api/[controller]")]
     public class ClientController
     {
         private readonly IClientService clientService;

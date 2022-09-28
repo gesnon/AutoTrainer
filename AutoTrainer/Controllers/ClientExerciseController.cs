@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AutoTrainer.Controllers
 {
     [ApiController]
-    [Route("API/ClientExercise")]
+    [Route("api/[controller]")]
     public class ClientExerciseController
     {
         private readonly IClientExerciseService clientExerciseService;
@@ -14,7 +14,7 @@ namespace AutoTrainer.Controllers
             this.clientExerciseService = clientExerciseService;
         }
 
-        [HttpGet("{ClientID}, {MuscleID}")]
+        [HttpGet("{ClientID}/{MuscleID}")]
         public List<ClientExercise> GetTrainingProgram(int ClientID, int MuscleID)
         {
             return clientExerciseService.GetTrainingProgram(ClientID, MuscleID);

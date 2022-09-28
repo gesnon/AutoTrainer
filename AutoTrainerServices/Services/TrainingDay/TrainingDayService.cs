@@ -1,4 +1,5 @@
-﻿using AutoTrainerDB;
+﻿using AutoMapper;
+using AutoTrainerDB;
 using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.ClientExercise;
 using AutoTrainerServices.DTO.Exercise;
@@ -15,12 +16,14 @@ namespace AutoTrainerServices.Services.Services
     public class TrainingDayService : ITrainingDayService
     {
         private readonly ContextDB context;
+        private readonly IMapper mapper;
 
         public IRoutineExerciseService routineExerciseService;
-        public TrainingDayService(ContextDB context, IRoutineExerciseService routineExerciseService)
+        public TrainingDayService(ContextDB context, IRoutineExerciseService routineExerciseService, IMapper mapper)
         {
             this.context = context;
             this.routineExerciseService = routineExerciseService;
+            this.mapper=mapper;
         }
 
         public GetTrainingDayDTO getTrainingDayDTO(int ID)
@@ -30,23 +33,14 @@ namespace AutoTrainerServices.Services.Services
             
             if (trainingDay == null)
             {
-               
-            }
-            List<GetRoutineExerciseDTO> list = routineExerciseService.GetRoutineExercisesDTO(trainingDay.ClientExercises);
-            return new GetTrainingDayDTO
-            {
-                Day = trainingDay.Day,
-                ID = ID,
-                TrainingWeekID = trainingDay.TrainingWeekID,
-                ClientExercisesDTO = trainingDay.ClientExercises.Select(
-                       _ => new GetClientExerciseDTO
-                       {
-                           ClientExerciseID = _.ClientExerciseID,
-                           TrainingDayID = _.TrainingDayID,
-                           RoutineExerciseDTO = new GetRoutineExerciseDTO { ExerciseDTO = new GetExerciseDTO { })
-            };
+                throw new Exception("Тренировочный день не найден");
+            } 
+
+            GetTrainingDayDTO DTO = mapper.Map<TrainingDay, GetTrainingDayDTO>(trainingDay);
+
+            return DTO;
         }
 
-        public void UpdateTrainingDayDTO();
+       
     }
 }

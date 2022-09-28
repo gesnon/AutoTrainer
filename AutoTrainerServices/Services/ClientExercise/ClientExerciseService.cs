@@ -1,4 +1,5 @@
-﻿using AutoTrainerDB;
+﻿using AutoMapper;
+using AutoTrainerDB;
 using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.ClientExercise;
 using AutoTrainerServices.DTO.Exercise;
@@ -15,10 +16,11 @@ namespace AutoTrainerServices.Services.Services
     public class ClientExerciseService : IClientExerciseService
     {
         private readonly ContextDB context;
-
-        public ClientExerciseService(ContextDB context)
+        private readonly IMapper mapper;
+        public ClientExerciseService(ContextDB context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         public List<ClientExercise> GetTrainingProgram(int ClientID, int MuscleID)
@@ -60,17 +62,8 @@ namespace AutoTrainerServices.Services.Services
             {
                 throw new Exception("Упражнение не найдено");
             }
-            return new GetClientExerciseDTO
-            {
-                ClientExerciseID = ID,
-                TrainingDayID = OldClientExercise.TrainingDayID,
-                RoutineExerciseDTO = new GetRoutineExerciseDTO
-                {
-                   ExerciseDTO= new GetExerciseDTO { Description= OldClientExercise.RoutineExercise.Description, Name=OldClientExercise.RoutineExercise.Name, ID=OldClientExercise.RoutineExerciseID},
-                   
-                    
-                }
-            };
+
+            return mapper.Map<ClientExercise, GetClientExerciseDTO>(OldClientExercise);
         }
         public void CreateClientExercise(CreateClientExerciseDTO DTO)
         {

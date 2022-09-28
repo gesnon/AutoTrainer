@@ -12,5 +12,6 @@ namespace AutoTrainerDB.Models
         public DayOfWeek Day { get; set; }
         public List<ClientExercise> ClientExercises { get; set; }
         public int TrainingWeekID { get; set; }
+        public TrainingWeek TrainingWeek { get; set; }
     }
 }

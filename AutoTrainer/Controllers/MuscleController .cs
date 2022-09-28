@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AutoTrainer.Controllers
 {
     [ApiController]
-    [Route("API/Level")]
+    [Route("api/[controller]")]
     public class MuscleController
     {
         private readonly IMuscleService muscleService;

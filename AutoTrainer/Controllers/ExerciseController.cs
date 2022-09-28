@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AutoTrainer.Controllers
 {
     [ApiController]
-    [Route("API/Exercise")]
+    [Route("api/[controller]")]
     public class ExerciseController
     {
         private readonly IExerciseService exerciseService;
@@ -29,7 +29,7 @@ namespace AutoTrainer.Controllers
         {
             exerciseService.DeleteExercise(ExerciseID);
         }
-        [HttpGet("GetExercisesByName/{Name?}")]
+        [HttpGet("GetExercisesByName/{Name}")]
         public List<GetExerciseDTO> GetExercisesByName(string Name)
         {
             return exerciseService.GetExercisesByName(Name);

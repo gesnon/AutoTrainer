@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AutoTrainer.Controllers
 {
     [ApiController]
-    [Route("API/Characteristic")]
+    [Route("api/[controller]")]
     public class CharacteristicController
     {
         private readonly ICharacteristicService characteristicService;
@@ -14,7 +14,6 @@ namespace AutoTrainer.Controllers
         {
             this.characteristicService = characteristicService;
         }
-
 
         [HttpPost]
         public void CreateCharacteristic([FromBody] CreateCharacteristicDTO newCreateCharacteristicDTO)
@@ -31,7 +30,7 @@ namespace AutoTrainer.Controllers
         {
             return characteristicService.GetCharacteristic(CharacteristicID);
         }
-        [HttpGet("GetCharacteristicsByName/{Name?")]
+        [HttpGet("GetCharacteristicsByName/{Name}")]
         public List<GetCharacteristicDTO> GetCharacteristicsByName(string Name)
         {
             return GetCharacteristicsByName(Name);
