@@ -440,13 +440,23 @@ namespace AutoTrainerServices.Services.Servises
                 List<Client> clients = new List<Client>
                 {
                     new Client{Name="Сергей",Role="Клиент", LevelID=1, PurposeID=2, Sex=Sex.Male },
-                    new Client{Name="Иван",Role="Клиент", LevelID=2, PurposeID=2, Sex=Sex.Male }
+                    new Client{Name="Иван",Role="Клиент", LevelID=2, PurposeID=2, Sex=Sex.Male },
+                    new Client{Name="Михаил", Role="Клиент", LevelID=1, PurposeID=2, Sex=Sex.Male }
                 };
                 List<PersonCharacteristic> personCharacteristics = new List<PersonCharacteristic>
                 {
-                    new PersonCharacteristic{CharacteristicID=1, ClientID=2}
+                    new PersonCharacteristic{CharacteristicID=1, ClientID=2},
+                    new PersonCharacteristic{CharacteristicID=1, ClientID=3},
+                    new PersonCharacteristic{CharacteristicID=2, ClientID=3},
+                    new PersonCharacteristic{CharacteristicID=3, ClientID=3},
                 };
+                List<Routine> routines = new List<Routine>
+                {
+                    new Routine{ClientID=1, TrainingWeeks=new List<TrainingWeek>() },
+                    new Routine{ClientID=2, TrainingWeeks=new List<TrainingWeek>()},
+                    new Routine{ClientID=3, TrainingWeeks=new List<TrainingWeek>()},
 
+                };
                 //context.Exercises.AddRange(exercises);
                 //context.Muscles.AddRange(muscles);
                 //context.Levels.AddRange(levels);
@@ -455,7 +465,7 @@ namespace AutoTrainerServices.Services.Servises
                 //context.RoutineExercises.AddRange(routineExercises);
                 //context.Clients.AddRange(clients);
                 //context.PersonCharacteristics.AddRange(personCharacteristics);
-                
+                context.Routines.AddRange(routines);
                 context.SaveChanges();
             }
         }

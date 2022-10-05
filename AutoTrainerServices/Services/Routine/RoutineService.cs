@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoTrainerDB;
 using AutoTrainerDB.Models;
+using AutoTrainerServices.DTO.TrainingDay;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,11 @@ namespace AutoTrainerServices.Services.Services
             this.clientExerciseService = clientExerciseService;
             this.mapper = mapper;
         }
-        public void CreateTrainingProgram(int ClientID, int num)
+        public List<GetTrainingDayDTO> CreateTrainingProgram(int ClientID, int num)
         {
       
-            Client client = context.Clients.FirstOrDefault(_ => _.ID == ClientID);
+            Client client = context.Clients.Include(_=>_.PersonCharacteristics)
+                .Include(_ => _.Routine).ThenInclude(_ => _.TrainingWeeks).ThenInclude(_ => _.TrainingDays).FirstOrDefault(_ => _.ID == ClientID);
             if (client == null)
             {
                 throw new Exception("Клиент не найден");
@@ -39,7 +41,7 @@ namespace AutoTrainerServices.Services.Services
             Random rnd = new Random();
             while (n > 1)
             { 
-                RoutineExercise a = routineExercises[n];
+                RoutineExercise a = routineExercises[n-1];
                 RoutineExercise c = a;
                 int rand = rnd.Next(0,routineExercises.Count);
                 RoutineExercise b = routineExercises[rand];
@@ -47,15 +49,21 @@ namespace AutoTrainerServices.Services.Services
                 b = c;
                 n--;
             }
+            List<TrainingDay> trainingDays = new List<TrainingDay>();
+
             List<ClientExercise> exercises = routineExercises.GetRange(0, 6).Select(_ => new ClientExercise { RoutineExerciseID = _.ID }).ToList();
             foreach (TrainingWeek week in client.Routine.TrainingWeeks)
             {
                 for (int i = 0; i < num; i++)
                 {
                     week.TrainingDays[i].ClientExercises.AddRange(exercises);
+                    trainingDays.Add(week.TrainingDays[i]);
                 }
             }
 
+            List<GetTrainingDayDTO> result = trainingDays.Select(_ => mapper.Map<TrainingDay, GetTrainingDayDTO>(_)).ToList();
+            
+            return result;
         }
     }
 }

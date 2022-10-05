@@ -21,6 +21,7 @@ builder.Services.AddDbContext<ContextDB>(options => options.UseSqlServer("Server
 
 builder.Services.AddTransient<IExerciseService, ExerciseService>();
 builder.Services.AddTransient<IClientExerciseService, ClientExerciseService>();
+builder.Services.AddTransient<IRoutineService, RoutineService>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 var app = builder.Build();
