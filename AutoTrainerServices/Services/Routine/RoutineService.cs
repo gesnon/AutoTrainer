@@ -102,8 +102,8 @@ namespace AutoTrainerServices.Services.Services
         public GetRoutineDTO GetClientRoutine(int ClientID)
         {
             Client client = context.Clients.Include(_=>_.Routine).ThenInclude(_ => _.TrainingWeeks)
-                .ThenInclude(_ => _.TrainingDays).ThenInclude(_ => _.ClientExercises).FirstOrDefault(_ => _.ID == ClientID);
-
+                .ThenInclude(_ => _.TrainingDays).ThenInclude(_ => _.ClientExercises).ThenInclude(_ => _.RoutineExercise).FirstOrDefault(_ => _.ID == ClientID);
+            mapper.ConfigurationProvider.AssertConfigurationIsValid();
             if (client == null)
             {
                 throw new Exception("Клиент не найден");

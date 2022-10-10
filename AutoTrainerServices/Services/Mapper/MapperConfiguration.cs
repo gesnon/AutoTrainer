@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoTrainerDB.Models;
+using AutoTrainerServices.DTO.Client;
 using AutoTrainerServices.DTO.ClientExercise;
 using AutoTrainerServices.DTO.Exercise;
 using AutoTrainerServices.DTO.Muscle;
@@ -55,6 +56,12 @@ namespace AutoTrainerServices.Services.Services
             .ForMember(_ => _.ID, opt => opt.MapFrom(i => i.ID))
             .ForMember(_ => _.Name, opt => opt.MapFrom(i => i.Name))
             .ForMember(_ => _.Description, opt => opt.MapFrom(i => i.Description));
+
+            this.CreateMap<Client, GetClientDTO>()
+            .ForMember(_ => _.Name, opt => opt.MapFrom(i => i.Name))
+            .ForMember(_ => _.Sex, opt => opt.MapFrom(i => i.Sex))
+            .ForMember(_ => _.LevelID, opt => opt.MapFrom(i => i.LevelID))
+            .ForMember(_ => _.PersonCharacteristics, opt => opt.Ignore());
         }
     }
 }
