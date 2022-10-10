@@ -101,7 +101,8 @@ namespace AutoTrainerServices.Services.Services
         }
         public GetRoutineDTO GetClientRoutine(int ClientID)
         {
-            Client client = context.Clients.FirstOrDefault(_ => _.ID == ClientID);
+            Client client = context.Clients.Include(_=>_.Routine).ThenInclude(_ => _.TrainingWeeks)
+                .ThenInclude(_ => _.TrainingDays).ThenInclude(_ => _.ClientExercises).FirstOrDefault(_ => _.ID == ClientID);
 
             if (client == null)
             {

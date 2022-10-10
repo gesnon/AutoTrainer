@@ -15,7 +15,7 @@ namespace AutoTrainer.Controllers
             this.routineService = routineService;
         }
 
-        [HttpGet]
+        [HttpPost("CreateTrainingProgram")]
         public void CreateTrainingProgram(int ClientID, int Num)
         {
             routineService.CreateTrainingProgram(ClientID, Num);
