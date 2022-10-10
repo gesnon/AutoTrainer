@@ -1,4 +1,5 @@
-﻿using AutoTrainerServices.DTO.TrainingDay;
+﻿using AutoTrainerServices.DTO.Routine;
+using AutoTrainerServices.DTO.TrainingDay;
 using AutoTrainerServices.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,9 +16,27 @@ namespace AutoTrainer.Controllers
         }
 
         [HttpGet]
-        public List<GetTrainingDayDTO> CreateTrainingProgram(int ClientID, int Num)
+        public void CreateTrainingProgram(int ClientID, int Num)
         {
-            return routineService.CreateTrainingProgram(ClientID, Num);
+            routineService.CreateTrainingProgram(ClientID, Num);
+        }
+
+        [HttpPost]
+        public void CreateNewRoutine(int ClientID)
+        {
+            routineService.CreateNewRoutine(ClientID);
+        }
+
+        [HttpDelete("{RoitineID}")]
+        public void DeleteRoutine(int RoitineID)
+        {
+            routineService.DeleteRoutine(RoitineID);
+        }
+
+        [HttpGet("{ClientID}")]
+        public GetRoutineDTO GetClientRoutine(int ClientID)
+        {
+            return routineService.GetClientRoutine(ClientID);
         }
     }
 }

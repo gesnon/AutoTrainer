@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoTrainerDB;
 using AutoTrainerDB.Models;
+using AutoTrainerServices.DTO.Routine;
 using AutoTrainerServices.DTO.TrainingDay;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,55 +16,100 @@ namespace AutoTrainerServices.Services.Services
     {
         private readonly ContextDB context;
         public IClientExerciseService clientExerciseService;
+        public IRoutineExerciseService routineExerciseService;
         private readonly IMapper mapper;
-        public RoutineService(ContextDB context, IClientExerciseService clientExerciseService, IMapper mapper)
+        public RoutineService(ContextDB context, IClientExerciseService clientExerciseService, IMapper mapper, IRoutineExerciseService routineExerciseService)
         {
             this.context = context;
             this.clientExerciseService = clientExerciseService;
             this.mapper = mapper;
+            this.routineExerciseService = routineExerciseService;
         }
-        public List<GetTrainingDayDTO> CreateTrainingProgram(int ClientID, int num)
+        public void CreateNewRoutine(int ClientID)
         {
-      
-            Client client = context.Clients.Include(_=>_.PersonCharacteristics)
-                .Include(_ => _.Routine).ThenInclude(_ => _.TrainingWeeks).ThenInclude(_ => _.TrainingDays).FirstOrDefault(_ => _.ID == ClientID);
+            Client client = context.Clients.FirstOrDefault(_ => _.ID == ClientID);
             if (client == null)
             {
                 throw new Exception("Клиент не найден");
             }
 
-            List<int> clientCharacteristics = client.PersonCharacteristics.Select(_ => _.CharacteristicID).ToList();
-            List<RoutineExercise> routineExercises = context.RoutineExercises.Include(_ => _.ExerciseCharacteristics)
-                .Where(_ => _.LevelID == client.LevelID && _.PurposeID == client.PurposeID
-                && _.Sex == client.Sex || _.Sex == Sex.Unisex).ToList();
-
-            int n = routineExercises.Count;
-            Random rnd = new Random();
-            while (n > 1)
-            { 
-                RoutineExercise a = routineExercises[n-1];
-                RoutineExercise c = a;
-                int rand = rnd.Next(0,routineExercises.Count);
-                RoutineExercise b = routineExercises[rand];
-                a = b;
-                b = c;
-                n--;
-            }
-            List<TrainingDay> trainingDays = new List<TrainingDay>();
-
-            List<ClientExercise> exercises = routineExercises.GetRange(0, 6).Select(_ => new ClientExercise { RoutineExerciseID = _.ID }).ToList();
-            foreach (TrainingWeek week in client.Routine.TrainingWeeks)
+            client.Routine = new Routine();
+            client.Routine.TrainingWeeks = new List<TrainingWeek>();
+            for (int i = 0; i < 4; i++)
             {
-                for (int i = 0; i < num; i++)
+                TrainingWeek trainingWeek = new TrainingWeek { Name = "Название"};
+                trainingWeek.TrainingDays = new List<TrainingDay>();
+                for (int o = 0; o < 7; o++)
                 {
-                    week.TrainingDays[i].ClientExercises.AddRange(exercises);
-                    trainingDays.Add(week.TrainingDays[i]);
+                    trainingWeek.TrainingDays.Add(new TrainingDay { ClientExercises = new List<ClientExercise>() });
+                }
+                client.Routine.TrainingWeeks.Add(trainingWeek);
+            }
+        }
+        public void ClearRoutine(Client Client)
+        {
+            foreach (TrainingWeek week in Client.Routine.TrainingWeeks)
+            {
+                foreach (TrainingDay day in week.TrainingDays)
+                {
+                    day.ClientExercises.Clear();
                 }
             }
+            context.SaveChanges();
+        }
+        public void DeleteRoutine(int RoutineID)
+        {
+            Routine routine = context.Routines.FirstOrDefault(_ => _.RoutineID == RoutineID);
+            if (routine == null)
+            {
+                throw new Exception("Программа не найдена");
+            }
+            context.Routines.Remove(routine);
+            context.SaveChanges();
+        }
+        public void CreateTrainingProgram(int ClientID, int num)
+        {
 
-            List<GetTrainingDayDTO> result = trainingDays.Select(_ => mapper.Map<TrainingDay, GetTrainingDayDTO>(_)).ToList();
-            
-            return result;
+            Client client = context.Clients.Include(_ => _.PersonCharacteristics)
+                .Include(_ => _.Routine).ThenInclude(_ => _.TrainingWeeks).ThenInclude(_ => _.TrainingDays).ThenInclude(_ => _.ClientExercises)
+                .ThenInclude(_ => _.RoutineExercise).FirstOrDefault(_ => _.ID == ClientID);
+
+            if (client == null)
+            {
+                throw new Exception("Клиент не найден");
+            }
+            if (client.Routine != null)
+            {
+                ClearRoutine(client);
+            }
+            if (client.Routine == null)
+            {
+                CreateNewRoutine(ClientID);
+            }
+
+            List<RoutineExercise> routineExercises = routineExerciseService.GetRoutineExercisesWithLimitation(client);
+
+            List<ClientExercise> clientExercises = routineExercises.GetRange(0, 6).Select(_ => new ClientExercise { RoutineExerciseID = _.ID }).ToList();
+
+            for (int i = 0; i < num; i++)
+            {
+                client.Routine.TrainingWeeks[0].TrainingDays[i].ClientExercises.AddRange(clientExercises);
+
+            }
+            context.SaveChanges();
+
+        }
+        public GetRoutineDTO GetClientRoutine(int ClientID)
+        {
+            Client client = context.Clients.FirstOrDefault(_ => _.ID == ClientID);
+
+            if (client == null)
+            {
+                throw new Exception("Клиент не найден");
+            }
+            GetRoutineDTO DTO = mapper.Map<GetRoutineDTO>(client.Routine);
+
+            return DTO;
         }
     }
 }

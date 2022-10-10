@@ -13,7 +13,7 @@ namespace AutoTrainerServices.Services.Services
         public void CreateRoutineExercise(CreateRoutineExerciseDTO newRoutineExercise);
         public void UpdateRoutineExercise(UpdateRoutineExerciseDTO newRoutineExercise);
         public void DeleteRoutineExercise(int RoutineExerciseID);
-        public List<RoutineExercise> GetTrainingProgram(Client Client, Muscle Muscle);
+        public List<RoutineExercise> GetRoutineExercisesWithLimitation(Client Client);
         public List<RoutineExercise> ConvertFromClientExercises(List<ClientExercise> clientExercises);
     }
 }

@@ -3,8 +3,10 @@ using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.ClientExercise;
 using AutoTrainerServices.DTO.Exercise;
 using AutoTrainerServices.DTO.Muscle;
+using AutoTrainerServices.DTO.Routine;
 using AutoTrainerServices.DTO.RoutineExercise;
 using AutoTrainerServices.DTO.TrainingDay;
+using AutoTrainerServices.DTO.TrainingWeek;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,17 @@ namespace AutoTrainerServices.Services.Services
     {
         public MapperConfiguration()
         {
+            this.CreateMap<Routine, GetRoutineDTO>()
+            .ForMember(_ => _.ClientDTO, opt => opt.MapFrom(i => i.Client))
+            .ForMember(_ => _.RoutineID, opt => opt.MapFrom(i => i.RoutineID))
+            .ForMember(_ => _.TrainingWeeksDTO, opt => opt.MapFrom(i => i.TrainingWeeks));            
+
+            this.CreateMap<TrainingWeek, GetTrainingWeekDTO>()
+            .ForMember(_ => _.Name, opt => opt.MapFrom(i => i.Name))
+            .ForMember(_ => _.ID, opt => opt.MapFrom(i => i.ID))
+            .ForMember(_ => _.RoutineID, opt => opt.MapFrom(i => i.RoutineID))
+            .ForMember(_ => _.TrainingDaysDTO, opt => opt.MapFrom(i => i.TrainingDays));
+
             this.CreateMap<TrainingDay, GetTrainingDayDTO>()
             .ForMember(_ => _.ID, opt => opt.MapFrom(i => i.ID))
             .ForMember(_ => _.TrainingWeekID, opt => opt.MapFrom(i => i.TrainingWeekID))

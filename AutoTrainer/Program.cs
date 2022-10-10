@@ -23,7 +23,7 @@ builder.Services.AddTransient<IExerciseService, ExerciseService>();
 builder.Services.AddTransient<IClientExerciseService, ClientExerciseService>();
 builder.Services.AddTransient<IRoutineService, RoutineService>();
 
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(MapperConfiguration).Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

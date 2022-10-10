@@ -1,4 +1,6 @@
-﻿using AutoTrainerServices.DTO.TrainingDay;
+﻿using AutoTrainerDB.Models;
+using AutoTrainerServices.DTO.Routine;
+using AutoTrainerServices.DTO.TrainingDay;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +11,15 @@ namespace AutoTrainerServices.Services.Services
 {
     public interface IRoutineService
     {
-        public List<GetTrainingDayDTO> CreateTrainingProgram(int ClientID, int numberOfTrainingDays);
+        public void CreateTrainingProgram(int ClientID, int numberOfTrainingDays);
 
+        public void CreateNewRoutine(int ClientID);
+
+        public void DeleteRoutine(int RoutineID);
+
+        public void ClearRoutine(Client Client);
+
+        public GetRoutineDTO GetClientRoutine(int ClientID);
         
     }
 }

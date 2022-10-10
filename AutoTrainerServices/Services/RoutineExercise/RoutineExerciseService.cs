@@ -7,6 +7,7 @@ using AutoTrainerServices.DTO.Level;
 using AutoTrainerServices.DTO.Muscle;
 using AutoTrainerServices.DTO.Purpose;
 using AutoTrainerServices.DTO.RoutineExercise;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,15 +77,19 @@ namespace AutoTrainerServices.Services.Services
             context.SaveChanges();
         }
 
-
         public List<RoutineExercise> ConvertFromClientExercises(List<ClientExercise> clientExercises)
         {
             List<RoutineExercise> result = clientExercises.Select(_ => new RoutineExercise { }).ToList();
             return result;
         }
-        public List<RoutineExercise> GetTrainingProgram(Client Client, Muscle Muscle)
-        {
-            return null;
+        public List<RoutineExercise> GetRoutineExercisesWithLimitation(Client Client)
+        {    
+            List<int> clientCharacteristics = Client.PersonCharacteristics.Select(_ => _.CharacteristicID).ToList();
+            List<RoutineExercise> routineExercises = context.RoutineExercises.Include(_ => _.ExerciseCharacteristics)
+                .Include(_ => _.Exercise).Where(_ => _.LevelID == Client.LevelID && _.PurposeID == Client.PurposeID
+                && _.Sex == Client.Sex || _.Sex == Sex.Unisex).ToList();
+
+            return routineExercises;
         }
     }
 }
