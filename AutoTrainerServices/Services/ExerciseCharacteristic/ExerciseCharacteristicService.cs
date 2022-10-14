@@ -1,7 +1,9 @@
-﻿using AutoTrainerDB;
+﻿using AutoMapper;
+using AutoTrainerDB;
 using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.Characteristic;
 using AutoTrainerServices.DTO.ExerciseCharacteristic;
+using AutoTrainerServices.Services.Exeptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,14 @@ using System.Threading.Tasks;
 
 namespace AutoTrainerServices.Services.Services
 {
-    public class ExerciseCharacteristicService: IExerciseCharacteristicService
+    public class ExerciseCharacteristicService : IExerciseCharacteristicService
     {
         private readonly ContextDB context;
-        public ExerciseCharacteristicService(ContextDB context)
+        private readonly IMapper mapper;
+        public ExerciseCharacteristicService(ContextDB context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
         public void CreateExerciseCharacteristic(CreateExerciseCharacteristicDTO DTO)
         {
@@ -24,13 +28,13 @@ namespace AutoTrainerServices.Services.Services
         }
         public void UpdateExerciseCharacteristic(UpdateExerciseCharacteristicDTO DTO)
         {
-            ExerciseCharacteristic exerciseCharacteristic = context.ExerciseCharacteristics.FirstOrDefault(_=>_.ExerciseCharacteristicID==DTO.ExerciseCharacteristicID);
+            ExerciseCharacteristic exerciseCharacteristic = context.ExerciseCharacteristics.FirstOrDefault(_ => _.ExerciseCharacteristicID == DTO.ExerciseCharacteristicID);
             if (exerciseCharacteristic == null)
             {
-                throw new Exception("характеристика не найдена");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
             exerciseCharacteristic.CharacteristicID = DTO.CharacteristicDTO.CharacteristicID;
-            exerciseCharacteristic.RoutineExerciseID= DTO.RoutineExerciseDTO.ID;
+            exerciseCharacteristic.RoutineExerciseID = DTO.RoutineExerciseDTO.ID;
             context.SaveChanges();
         }
         public void DeleteExerciseCharacteristic(int ID)
@@ -38,7 +42,7 @@ namespace AutoTrainerServices.Services.Services
             ExerciseCharacteristic exerciseCharacteristic = context.ExerciseCharacteristics.FirstOrDefault(_ => _.ExerciseCharacteristicID == ID);
             if (exerciseCharacteristic == null)
             {
-                throw new Exception("характеристика не найдена");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
             context.ExerciseCharacteristics.Remove(exerciseCharacteristic);
             context.SaveChanges();
@@ -48,10 +52,22 @@ namespace AutoTrainerServices.Services.Services
             ExerciseCharacteristic exerciseCharacteristic = context.ExerciseCharacteristics.FirstOrDefault(_ => _.ExerciseCharacteristicID == ID);
             if (exerciseCharacteristic == null)
             {
-                throw new Exception("характеристика не найдена");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
             return exerciseCharacteristic;
         }
+        public List<GetExerciseCharacteristicDTO> GetExerciseCharacteristicByName(string name)
+        {
+            var query = context.ExerciseCharacteristics.AsQueryable();
 
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(_ => _.Characteristic.Name.Contains(name));
+            }
+
+            List<GetExerciseCharacteristicDTO> list = query.Select(_ => mapper.Map<GetExerciseCharacteristicDTO>(_)).ToList();
+
+            return list;
+        }
     }
 }

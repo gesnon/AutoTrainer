@@ -12,6 +12,7 @@ namespace AutoTrainerServices.Services.Services
         public void CreatePurpose(CreatePurposeDTO DTO);
         public void UpdatePurpose(UpdatePurposeDTO DTO);
         public void DeletePurpose(int ID);
+        public List<GetPurposeDTO> GelAllPurposes();
         public GetPurposeDTO GetPurposeByID(int ID);
     }
 }

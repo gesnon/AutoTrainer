@@ -5,6 +5,7 @@ using AutoTrainerServices.DTO.ClientExercise;
 using AutoTrainerServices.DTO.Exercise;
 using AutoTrainerServices.DTO.RoutineExercise;
 using AutoTrainerServices.DTO.TrainingDay;
+using AutoTrainerServices.Services.Exeptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,8 @@ namespace AutoTrainerServices.Services.Services
             
             if (trainingDay == null)
             {
-                throw new Exception("Тренировочный день не найден");
+                throw new NotFoundExeption("{Тренировочный день не найден");
+                
             } 
 
             GetTrainingDayDTO DTO = mapper.Map<TrainingDay, GetTrainingDayDTO>(trainingDay);

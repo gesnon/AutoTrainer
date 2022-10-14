@@ -1,6 +1,7 @@
 ﻿using AutoTrainerDB;
 using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.Characteristic;
+using AutoTrainerServices.Services.Exeptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +27,9 @@ namespace AutoTrainerServices.Services.Services
         {
             Characteristic OldCharacteristic = context.Characteristics.FirstOrDefault(c => c.ID == newUpdateCharacteristicDTO.CharacteristicID);
 
-            if (OldCharacteristic != null)
+            if (OldCharacteristic == null)
             {
-                throw new Exception("Характеристика не найдена");
-
+                throw new NotFoundExeption("{Характеристика не найдена");
             }
             OldCharacteristic.Name = newUpdateCharacteristicDTO.Name;
             context.SaveChanges();
@@ -38,9 +38,9 @@ namespace AutoTrainerServices.Services.Services
         {
             Characteristic OldCharacteristic = context.Characteristics.FirstOrDefault(c => c.ID == CharacteristicID);
 
-            if (OldCharacteristic != null)
+            if (OldCharacteristic == null)
             {
-                throw new Exception("Характеристика не найдена");
+                throw new NotFoundExeption("{Характеристика не найдена");
 
             }
 
@@ -59,15 +59,15 @@ namespace AutoTrainerServices.Services.Services
         }
         public void DeleteCharacteristic(int CharacteristicID)
         {
-            Characteristic OldCharacteristic = context.Characteristics.FirstOrDefault(c => c.ID == CharacteristicID);
+            Characteristic characteristic = context.Characteristics.FirstOrDefault(c => c.ID == CharacteristicID);
 
-            if (OldCharacteristic != null)
+            if (characteristic != null)
             {
-                throw new Exception("Характеристика не найдена");
+                throw new NotFoundExeption("{Характеристика не найдена");
 
             }
 
-            context.Characteristics.Remove(OldCharacteristic);
+            context.Characteristics.Remove(characteristic);
             context.SaveChanges();
         }
     }

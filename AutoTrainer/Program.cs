@@ -1,3 +1,4 @@
+using AutoTrainer.CustomExceptionMiddleware;
 using AutoTrainerDB;
 using AutoTrainerServices.Services.Services;
 using AutoTrainerServices.Services.Servises;
@@ -23,7 +24,7 @@ builder.Services.AddTransient<IExerciseService, ExerciseService>();
 builder.Services.AddTransient<IClientExerciseService, ClientExerciseService>();
 builder.Services.AddTransient<IRoutineService, RoutineService>();
 builder.Services.AddTransient<IRoutineExerciseService, RoutineExerciseService>();
-
+builder.Services.AddTransient<IMuscleService, MuscleService>();
 builder.Services.AddAutoMapper(typeof(MapperConfiguration).Assembly);
 var app = builder.Build();
 
@@ -35,6 +36,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 

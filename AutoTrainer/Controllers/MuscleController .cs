@@ -31,12 +31,12 @@ namespace AutoTrainer.Controllers
             muscleService.DeleteMuscle(ID);
         }
 
-        [HttpGet("{Name}")]
+        [HttpGet("GetMuscleByName/{Name}")]
         public List<GetMuscleDTO> GetMuscleByName(string Name)
         {
             return muscleService.GetMuscleByName(Name);
         }
-        [HttpGet("{ID}")]
+        [HttpGet("GetMuscle/{ID}")]
         public Muscle GetMuscle(int ID)
         {
             return muscleService.GetMuscle(ID);

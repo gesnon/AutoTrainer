@@ -1,6 +1,7 @@
 ﻿using AutoTrainerDB;
 using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.Level;
+using AutoTrainerServices.Services.Exeptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace AutoTrainerServices.Services.Services
             Level level = context.Levels.FirstOrDefault(_ => _.ID == DTO.ID);
             if (level == null)
             {
-                throw new Exception("Уровень подготовки не найлет");
+                throw new NotFoundExeption("{Уровень подготовки не найден}");
             }
             level.Name = DTO.Name;
             context.SaveChanges();
@@ -36,7 +37,7 @@ namespace AutoTrainerServices.Services.Services
             Level level = context.Levels.FirstOrDefault(_ => _.ID == ID);
             if (level == null)
             {
-                throw new Exception("Уровень подготовки не найлет");
+                throw new NotFoundExeption("{Уровень подготовки не найден}");
             }
             context.Levels.Remove(level);
             context.SaveChanges();
@@ -52,7 +53,7 @@ namespace AutoTrainerServices.Services.Services
             Level level = context.Levels.FirstOrDefault(_ => _.ID == ID);
             if (level == null)
             {
-                throw new Exception("Уровень подготовки не найлет");
+                throw new NotFoundExeption("{Уровень подготовки не найден}");
             }
             return level;
         }

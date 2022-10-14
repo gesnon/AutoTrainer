@@ -7,6 +7,7 @@ using AutoTrainerServices.DTO.Level;
 using AutoTrainerServices.DTO.Muscle;
 using AutoTrainerServices.DTO.Purpose;
 using AutoTrainerServices.DTO.RoutineExercise;
+using AutoTrainerServices.Services.Exeptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (OldRoutineExercise == null)
             {
-                throw new Exception("Объект не найден");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
             OldRoutineExercise.ExerciseID = newRoutineExercise.ExerciseID;
             OldRoutineExercise.LevelID = newRoutineExercise.LevelID;
@@ -69,7 +70,7 @@ namespace AutoTrainerServices.Services.Services
             RoutineExercise routineExercise = context.RoutineExercises.FirstOrDefault(_ => _.ID == RoutineExerciseID);
             if (routineExercise == null)
             {
-                throw new Exception("Объект не найден");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
 
             context.RoutineExercises.Remove(routineExercise);

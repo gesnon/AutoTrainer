@@ -14,7 +14,8 @@ namespace AutoTrainerServices.Services.Services
         public void CreateExerciseCharacteristic(CreateExerciseCharacteristicDTO DTO);
         public void UpdateExerciseCharacteristic(UpdateExerciseCharacteristicDTO DTO);
         public void DeleteExerciseCharacteristic(int ID);
-        public ExerciseCharacteristic GetExerciseCharacteristicByID(int ID);   
+        public ExerciseCharacteristic GetExerciseCharacteristicByID(int ID);          
+        public List<GetExerciseCharacteristicDTO>  GetExerciseCharacteristicByName(string Name);
 
     }
 }

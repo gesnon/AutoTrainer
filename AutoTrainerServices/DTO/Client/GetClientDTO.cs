@@ -10,6 +10,7 @@ namespace AutoTrainerServices.DTO.Client
     public class GetClientDTO
     {
         public string Name { get; set; }
+        public int ID { get; set; }
         public Sex Sex { get; set; }
         public string Role { get; set; }
         public List<int> PersonCharacteristics { get; set; } = new List<int>();

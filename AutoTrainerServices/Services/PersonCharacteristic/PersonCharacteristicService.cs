@@ -1,7 +1,9 @@
-﻿using AutoTrainerDB;
+﻿using AutoMapper;
+using AutoTrainerDB;
 using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.Characteristic;
 using AutoTrainerServices.DTO.PersonCharacteristic;
+using AutoTrainerServices.Services.Exeptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +15,11 @@ namespace AutoTrainerServices.Services.Services
     public class PersonCharacteristicService : IPersonCharacteristicService
     {
         private readonly ContextDB context;
-        public PersonCharacteristicService(ContextDB context)
+        private readonly IMapper mapper;
+        public PersonCharacteristicService(ContextDB context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         public GetPersonCharacteristicDTO GetPersonCharacteristicDTO(int ID)
@@ -24,7 +28,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (res == null)
             {
-                throw new Exception("Характеристика не найдена");
+                throw new NotFoundExeption("{Характеристика не найдена");
 
             }
             return new GetPersonCharacteristicDTO { CharacteristicDTO=new GetCharacteristicDTO {Name=res.Characteristic.Name, CharacteristicID=res.Characteristic.ID }, PersonCharacteristicID=res.PersonCharacteristicID };
@@ -42,8 +46,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (res == null)
             {
-                throw new Exception("Характеристика не найдена");
-
+                throw new NotFoundExeption("{Характеристика не найдена");
             }            
             res.CharacteristicID = res.Characteristic.ID;           
             context.SaveChanges();
@@ -54,8 +57,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (res == null)
             {
-                throw new Exception("Характеристика не найдена");
-
+                throw new NotFoundExeption("{Характеристика не найдена");
             }
             return res;
         }
@@ -65,8 +67,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (res == null)
             {
-                throw new Exception("Характеристика не найдена");
-
+                throw new NotFoundExeption("{Характеристика не найдена");
             }
             context.PersonCharacteristics.Remove(res);
             context.SaveChanges();
@@ -77,7 +78,7 @@ namespace AutoTrainerServices.Services.Services
             Client client = context.Clients.FirstOrDefault(_ => _.ID == ClientID);
             if(client == null)
             {
-                throw new Exception("Клиент не найден");
+                throw new NotFoundExeption("{Клиен не найден");
             }
             List<GetPersonCharacteristicDTO> res = client.PersonCharacteristics.Select(_ =>
             new GetPersonCharacteristicDTO

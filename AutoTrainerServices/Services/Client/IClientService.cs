@@ -11,6 +11,9 @@ namespace AutoTrainerServices.Services.Services
     {
         public void CreateClient(CreateClientDTO newClientDTO);
 
+        public GetClientDTO GetClientByID(int CLientID);
+
+        public List<GetClientDTO> GetClientsByName(string Name);
         public void DeleteClient(int ID);
         
     }

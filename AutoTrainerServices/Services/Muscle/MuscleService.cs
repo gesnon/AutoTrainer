@@ -1,6 +1,7 @@
 ﻿using AutoTrainerDB;
 using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.Muscle;
+using AutoTrainerServices.Services.Exeptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (OldMuscle == null)
             {
-                throw new Exception("Мышца не найдена");
+                throw new NotFoundExeption("Мышца не найдена");
             }
             OldMuscle.Name = newUpdateMuscleDTO.Name;
             OldMuscle.SubName = newUpdateMuscleDTO.SubName;
@@ -44,7 +45,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (result == null)
             {
-                throw new Exception("Мышца не найдена");
+                throw new NotFoundExeption("Мышца не найдена");
             }
             return result;
         }
@@ -63,7 +64,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (result == null)
             {
-                throw new Exception("Мышца не найдена");
+                throw new NotFoundExeption("Мышца не найдена");
             }
             context.Muscles.Remove(result);
             context.SaveChanges();

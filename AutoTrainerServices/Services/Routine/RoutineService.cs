@@ -3,6 +3,7 @@ using AutoTrainerDB;
 using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.Routine;
 using AutoTrainerServices.DTO.TrainingDay;
+using AutoTrainerServices.Services.Exeptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,14 +31,14 @@ namespace AutoTrainerServices.Services.Services
             Client client = context.Clients.FirstOrDefault(_ => _.ID == ClientID);
             if (client == null)
             {
-                throw new Exception("Клиент не найден");
+                throw new NotFoundExeption("{Клиент не найден");
             }
 
             client.Routine = new Routine();
             client.Routine.TrainingWeeks = new List<TrainingWeek>();
             for (int i = 0; i < 4; i++)
             {
-                TrainingWeek trainingWeek = new TrainingWeek { Name = "Название"};
+                TrainingWeek trainingWeek = new TrainingWeek { Name = "Название" };
                 trainingWeek.TrainingDays = new List<TrainingDay>();
                 for (int o = 0; o < 7; o++)
                 {
@@ -62,7 +63,7 @@ namespace AutoTrainerServices.Services.Services
             Routine routine = context.Routines.FirstOrDefault(_ => _.RoutineID == RoutineID);
             if (routine == null)
             {
-                throw new Exception("Программа не найдена");
+                throw new NotFoundExeption("{Программа не найдена");
             }
             context.Routines.Remove(routine);
             context.SaveChanges();
@@ -76,7 +77,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (client == null)
             {
-                throw new Exception("Клиент не найден");
+                throw new NotFoundExeption("{Клиент не найден");
             }
             if (client.Routine != null)
             {
@@ -89,24 +90,29 @@ namespace AutoTrainerServices.Services.Services
 
             List<RoutineExercise> routineExercises = routineExerciseService.GetRoutineExercisesWithLimitation(client);
 
-            List<ClientExercise> clientExercises = routineExercises.GetRange(0, 6).Select(_ => new ClientExercise { RoutineExerciseID = _.ID }).ToList();
+            List<ClientExercise> clientExercises1 = routineExercises.GetRange(0, 6).Select(_ => new ClientExercise { RoutineExerciseID = _.ID }).ToList();
 
-            for (int i = 0; i < num; i++)
-            {
-                client.Routine.TrainingWeeks[0].TrainingDays[i].ClientExercises.AddRange(clientExercises);
+            List<ClientExercise> clientExercises2 = routineExercises.GetRange(6, 6).Select(_ => new ClientExercise { RoutineExerciseID = _.ID }).ToList();
 
-            }
+            List<ClientExercise> clientExercises3 = routineExercises.GetRange(12, 6).Select(_ => new ClientExercise { RoutineExerciseID = _.ID }).ToList();
+            
+            
+                client.Routine.TrainingWeeks[0].TrainingDays[0].ClientExercises.AddRange(clientExercises1);
+                client.Routine.TrainingWeeks[0].TrainingDays[1].ClientExercises.AddRange(clientExercises2);
+                client.Routine.TrainingWeeks[0].TrainingDays[2].ClientExercises.AddRange(clientExercises3);
+
             context.SaveChanges();
 
         }
         public GetRoutineDTO GetClientRoutine(int ClientID)
         {
-            Client client = context.Clients.Include(_=>_.Routine).ThenInclude(_ => _.TrainingWeeks)
-                .ThenInclude(_ => _.TrainingDays).ThenInclude(_ => _.ClientExercises).ThenInclude(_ => _.RoutineExercise).FirstOrDefault(_ => _.ID == ClientID);
+            Client client = context.Clients.Include(_ => _.Routine).ThenInclude(_ => _.TrainingWeeks)
+            .ThenInclude(_ => _.TrainingDays).ThenInclude(_ => _.ClientExercises)
+            .ThenInclude(_ => _.RoutineExercise).FirstOrDefault(_ => _.ID == ClientID);
             mapper.ConfigurationProvider.AssertConfigurationIsValid();
             if (client == null)
             {
-                throw new Exception("Клиент не найден");
+                throw new NotFoundExeption("{Клиент не найден");
             }
             GetRoutineDTO DTO = mapper.Map<GetRoutineDTO>(client.Routine);
 

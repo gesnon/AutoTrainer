@@ -1,6 +1,7 @@
 ﻿using AutoTrainerDB;
 using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.Exercise;
+using AutoTrainerServices.Services.Exeptions;
 using AutoTrainerServices.Services.Services;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace AutoTrainerServices.Services.Servises
 
             if (OldExercise == null)
             {
-                throw new Exception("Упражнение не найдёно");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
 
             OldExercise.Name = newExerciseUpdateDTO.Name;
@@ -47,7 +48,7 @@ namespace AutoTrainerServices.Services.Servises
             Exercise exercise = context.Exercises.FirstOrDefault(_ => _.ID == ExerciseID);
             if (exercise == null)
             {
-                throw new Exception("Упражнение не найдёно");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
 
             context.Exercises.Remove(exercise);
@@ -79,7 +80,7 @@ namespace AutoTrainerServices.Services.Servises
             Exercise exercise = context.Exercises.FirstOrDefault(_ => _.ID == ExerciseID);
             if (exercise == null)
             {
-                throw new Exception("Упражнение не найдено");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
 
             return new GetExerciseDTO

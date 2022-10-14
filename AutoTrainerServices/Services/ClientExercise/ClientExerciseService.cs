@@ -4,6 +4,7 @@ using AutoTrainerDB.Models;
 using AutoTrainerServices.DTO.ClientExercise;
 using AutoTrainerServices.DTO.Exercise;
 using AutoTrainerServices.DTO.RoutineExercise;
+using AutoTrainerServices.Services.Exeptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace AutoTrainerServices.Services.Services
             Client client = context.Clients.Include(_ => _.PersonCharacteristics).FirstOrDefault(_ => _.ID == ClientID);
             if (client == null)
             {
-                throw new Exception("Клиент не найден");
+                throw new NotFoundExeption("{Клиент не найден");
             }
 
             List<ClientExercise> trainingProgram = new List<ClientExercise>();
@@ -60,7 +61,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (OldClientExercise == null)
             {
-                throw new Exception("Упражнение не найдено");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
 
             return mapper.Map<ClientExercise, GetClientExerciseDTO>(OldClientExercise);
@@ -76,7 +77,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (OldClientExercise == null)
             {
-                throw new Exception("Упражнение не найдено");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
             OldClientExercise.RoutineExerciseID = DTO.RoutineExerciseID;
             OldClientExercise.TrainingDayID = DTO.TrainingDayID;
@@ -89,7 +90,7 @@ namespace AutoTrainerServices.Services.Services
 
             if (OldClientExercise == null)
             {
-                throw new Exception("Упражнение не найдено");
+                throw new NotFoundExeption("{Упражнение не найдено");
             }
             context.ClientExercises.Remove(OldClientExercise);
 
