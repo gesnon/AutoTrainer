@@ -10,7 +10,7 @@ namespace AutoTrainerServices.Services.Services
 {
     public interface IMuscleService
     {
-        public void CreateMuscle(CreateMuscleDTO newCreateMuscleDTO);
+        public int CreateMuscle(CreateMuscleDTO newCreateMuscleDTO);
         public void UpdateMuscle(UpdateMuscleDTO newUpdateMuscleDTO);
         public Muscle GetMuscle(int MuscleID);
         public List<GetMuscleDTO> GetMuscleByName(string Name);

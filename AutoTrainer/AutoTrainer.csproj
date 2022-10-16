@@ -16,5 +16,9 @@
     <ProjectReference Include="..\AutoTrainerDB\AutoTrainerDB.csproj" />
     <ProjectReference Include="..\AutoTrainerServices\AutoTrainerServices.csproj" />
   </ItemGroup>
+	
+	<ItemGroup>
+		<InternalsVisibleTo Include="AutoTrainerTest" />
+	</ItemGroup>
 
 </Project>

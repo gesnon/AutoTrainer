@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "GYMApp", Version = "v1" });
-   
+
 });
 builder.Services.AddDbContext<ContextDB>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=AutoTrainerDB;Trusted_Connection=true"));
 
@@ -31,6 +31,11 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    using (var scope = app.Services.CreateScope())
+    {
+        var s = scope.ServiceProvider.GetRequiredService<ContextDB>();
+        s.Database.Migrate();
+    }
     app.UseSwagger();
     app.UseSwaggerUI();
 }

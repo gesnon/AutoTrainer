@@ -18,14 +18,17 @@ namespace AutoTrainerServices.Services.Services
             this.context = context;
         }
 
-        public void CreateMuscle(CreateMuscleDTO newCreateMuscleDTO)
+        public int CreateMuscle(CreateMuscleDTO newCreateMuscleDTO)
         {
-            context.Muscles.Add(new Muscle
+            Muscle muscle = new Muscle
             {
                 Name = newCreateMuscleDTO.Name,
                 SubName = newCreateMuscleDTO.SubName
-            });
+            };
+            context.Muscles.Add(muscle);
             context.SaveChanges();
+
+            return muscle.ID;
         }
         public void UpdateMuscle(UpdateMuscleDTO newUpdateMuscleDTO)
         {

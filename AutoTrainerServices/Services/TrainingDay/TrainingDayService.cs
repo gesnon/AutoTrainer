@@ -38,7 +38,7 @@ namespace AutoTrainerServices.Services.Services
                 
             } 
 
-            GetTrainingDayDTO DTO = mapper.Map<TrainingDay, GetTrainingDayDTO>(trainingDay);
+            GetTrainingDayDTO DTO = mapper.Map<GetTrainingDayDTO>(trainingDay);
 
             return DTO;
         }
